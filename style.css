@@ -1,0 +1,365 @@
+/* --- Global Styles --- */
+:root {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --accent-color: #e0e0e0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Source Serif 4', serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 3rem;
+    font-style: italic;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: #cccccc;
+    font-weight: 350;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Header & Logo --- */
+/* --- Unified Hero Section --- */
+.grey-hero-patch {
+    background-color: #1c1c1c; /* Lighter grey than your main background */
+    width: 100%;               /* Spans full width of the screen */
+    
+    /* Spacing */
+    padding-bottom: 80px;      /* Space below the text */
+    margin-bottom: 100px;      /* Gap before the first video project starts */
+    text-align: center;
+}
+
+/* Tighter Logo Alignment */
+.grey-hero-patch .logo-img {
+    display: block;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;       /* Only 20px gap between Logo and Text */
+}
+
+/* Remove default H1 spacing to keep it tight */
+.grey-hero-patch h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.logo-img {
+    /* Adjust this width to match the size of your signature file */
+    width: 200px; 
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* --- Hero --- */
+.hero {
+    padding: 0px 0 100px;
+}
+
+/* --- Project Rows --- */
+.project-row {
+    display: flex;
+    align-items: center; /* Centers items vertically */
+    gap: 60px;
+    margin-bottom: 120px;
+}
+
+.project-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.media-side {
+    flex: 1;
+    display: flex;           /* Enables flexbox for this column */
+    justify-content: center; /* Horizontally centers the image/video */
+    align-items: center;     /* Vertically centers if the column gets taller */
+}
+
+.text-side {
+    flex: 1;
+    display: block;          /* Ensures text behaves like a normal block */
+    text-align: left;        /* Explicitly forces left alignment */
+    padding-top: 0px; 
+}
+
+.media-side img {
+    max-width: 80%;
+    height: auto;
+    /* Keeps your specific BMW ad rule working while centering it */
+    margin: 0 auto; 
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+
+/* --- Video Embed Wrapper --- */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background: #000;
+    width: 100%;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Buttons & Links --- */
+.btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+
+.logo-small {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    font-style: normal;
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   HERMES GALLERY FIX
+   ========================================= */
+
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 100%; 
+    max-width: 95%; /* Ensures it overrides any default page limits */
+    gap: 10px;
+    padding: 0;
+    box-sizing: border-box;
+    margin-bottom: 120px;
+}
+
+/* Mobile: Stack them neatly */
+@media (max-width: 768px) {
+    .grid-gallery {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Styling for captions under images */
+.caption {
+    font-size: 0.85rem;    /* Smaller text */
+    color: #888;           /* Grey color */
+    margin-top: 15px;      /* Space between image and text */
+    line-height: 1.4;      /* Tighter line height for small text */
+    max-width: 400px;      /* Prevents caption from getting too wide */
+    text-align: center;    /* Center align the caption with the image */
+}
+
+/* Ensure the wrapper inside media-side stacks vertically */
+.media-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 60px;
+}
+
+.project-row.tight-bottom {
+    margin-bottom: 50px !important; /* Force a tiny 20px gap */
+}
+
+/* --- Special Layout for Runwal Section --- */
+
+/* 1. Remove the big bottom margin from the main Runwal row */
+/* This ensures the gallery below it sits close, like a sub-section */
+.project-row.runwal-main {
+    margin-bottom: 40px; /* Reduced from the standard 120px */
+
+}
+
+.project-row.metro-main {
+margin-bottom: 60px !important; /* Reduced from the standard 120px */
+
+}
+
+.project-row.taj-loyalty {
+margin-bottom: 90px !important; /* Reduced from the standard 120px */
+
+}
+
+/* --- Recruitment Grid --- */
+.recruitment-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 75px;
+}
+
+/* 1. Force the H2 to span the full width of the grid */
+.grid-header {
+    grid-column: 1 / -1;   /* Spans across all 4 columns */
+    text-align: center;    /* Centers the text */
+    width: 100%;
+    margin-bottom: 40px;   /* Adds a nice gap between text and images */
+}
+
+/* 2. Ensure the images below fill their columns perfectly */
+.recruitment-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+/* --- Footer --- */
+.footer-cta {
+    border-top: 1px solid #333;
+    Padding-top: 30px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+footer {
+    background-color: #1c1c1c; 
+    width: 100%;
+    border-top: 1px solid #333;
+    padding: 40px 0;
+    font-size: 0.9rem;
+    color: #777;
+    line-height: 1;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .project-row, .project-row.reverse {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .grid-gallery, .recruitment-grid {
+        grid-template-columns: 1fr; /* Stack vertically on mobile */
+    }
+    
+    h1 { font-size: 2rem; }
+}
+
+/* Add this new class for tall/vertical images only */
+.tall-ad {
+    max-height: 80vh;      /* Limit height */
+    width: auto;           /* Let width adjust naturally */
+    margin: 0 auto;        /* Center it */
+    display: block;
+}
+
+/* =========================================
+   RUNWAL SPECIAL LAYOUT
+   ========================================= */
+
+/* The Big Hero Image */
+.runwal-hero-img {
+    width: 100% !important; /* Force full column width */
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- 2. The Gallery Section --- */
+.runwal-gallery {
+    /* Grid Layout */
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* 3 Equal columns */
+    gap: 15px;                             /* Your requested 15px gap */
+    
+    /* Constraint & Alignment */
+    width: fit-content;
+    max-width: 100%;      /* Force it to match the text width */
+    margin: 0 auto;         /* Center the whole block on page */
+    padding: 0 20px;        /* Match the standard .container padding */
+    box-sizing: border-box; 
+    margin-bottom: 120px;   /* Space before next section */
+}
+
+/* The Gallery Images */
+.runwal-gallery img {
+    width: auto;
+    max-width: 100%;            /* Fill the column width */
+    height: 100%;           /* Fill the vertical space */
+    max-height: 55vh;       /* Cap the height */
+    object-fit: contain;      /* CHANGED to 'cover' to eliminate white gaps */
+    display: block;   
+    border-radius: 4px;     /* Optional polish */
+}
+
+/* Mobile Stack */
+@media (max-width: 768px) {
+    .runwal-gallery {
+        grid-template-columns: 1fr;
+        width: 100%;       /* Full width on phone */
+    }
+    .runwal-gallery img {
+        height: auto;      /* Reset height to avoid tiny images */
+        width: 100%;       /* Fill the screen */
+        max-height: none;
+    }
+
+}
+
+.project-row.hermes-main {
+    margin-bottom: 40px !important; /* Adjust this number to taste */
+}
+
+.socials a {
+    color: #777; /* Default grey */
+    transition: color 0.3s ease;
+    display: inline-block;
+    }
+
+.socials a:hover {
+    color: #fff; /* Turns white on hover */
+}
