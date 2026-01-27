@@ -62,7 +62,7 @@
 
    <section class="project-row container hermes-main">
         <div class="media-side">
-            <img src="Cover.png" alt="Hermes Growth Model" loading="lazy">
+            <img src="cover.png" alt="Hermes Growth Model" loading="lazy">
         </div>
         
 <div class="text-side">
@@ -124,9 +124,9 @@ An example I cited was how Hermès, the haute couture fashion house could run pe
 </section>
 
 <section class="grid-gallery container runwal-gallery">
-    <img src="runwal-1.jpg" alt="Runwal Ad 1" loading="lazy">
-    <img src="runwal-2.jpg" alt="Runwal Ad 2" loading="lazy">
-    <img src="runwal-3.jpg" alt="Runwal Ad 3" loading="lazy">
+    <img src="runwal-1.jpeg" alt="Runwal Ad 1" loading="lazy">
+    <img src="runwal-2.jpeg" alt="Runwal Ad 2" loading="lazy">
+    <img src="runwal-3.jpeg" alt="Runwal Ad 3" loading="lazy">
 </section>
 
     <section class="project-row container reverse taj-loyalty">
@@ -167,12 +167,12 @@ An example I cited was how Hermès, the haute couture fashion house could run pe
     <section class="recruitment-grid container">
 <h2 class="grid-header">An agency I worked at was hiring.</h2>
 
-		<div class="gallery-scroll">
+<div class="gallery-scroll">
         <img src="ad-manager.jpg" alt="Account Manager Ad" loading="lazy">
         <img src="ad-copywriter.jpg" alt="Copywriter Ad" loading="lazy">
         <img src="ad-executive.jpg" alt="Executive Ad" loading="lazy">
         <img src="ad-influencer.jpg" alt="Influencer Ad" loading="lazy">
-    </section>
+    </div></section>
 
     <section class="footer-cta container">
         <h2>Want to read more of my words? <br> Check out <a href="https://nehadzein.substack.com" target="_blank"></i>My Atlas of Reality</i></a></h2>
@@ -189,32 +189,39 @@ An example I cited was how Hermès, the haute couture fashion house could run pe
         </svg>
     </a>
 </div>
+</div>
     </footer>
-<script>
-    // 1. Create the lightbox elements in the browser (The Dark Room)
-    const lightbox = document.createElement('div');
-    lightbox.id = 'lightbox-overlay';
-    document.body.appendChild(lightbox);
 
-    const lightboxImg = document.createElement('img');
-    lightbox.appendChild(lightboxImg);
+    <script>
+    // Lightbox functionality
+    (function() {
+        // 1. Create the lightbox overlay
+        const lightbox = document.createElement('div');
+        lightbox.id = 'lightbox-overlay';
+        document.body.appendChild(lightbox);
 
-    // 2. Find every image in your 'sections' (Ignoring the logo)
-    // This targets standard images AND images inside your new carousels
-    const images = document.querySelectorAll('section img');
+        // 2. Create the image inside it
+        const lightboxImg = document.createElement('img');
+        lightbox.appendChild(lightboxImg);
 
-    // 3. Add the "Click" magic to each image
-    images.forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;        // Copy the image source
-            lightbox.classList.add('active'); // Turn on the lights
+        // 3. Find all images in sections
+        const images = document.querySelectorAll('section img');
+
+        // 4. Add click handlers
+        images.forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
         });
-    });
 
-    // 4. Click anywhere to close
-    lightbox.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-    });
-</script>
+        // 5. Click to close
+        lightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+    })();
+    </script>
+
 </body>
 </html>
