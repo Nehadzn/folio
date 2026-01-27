@@ -166,6 +166,8 @@ An example I cited was how Hermès, the haute couture fashion house could run pe
 
     <section class="recruitment-grid container">
 <h2 class="grid-header">An agency I worked at was hiring.</h2>
+
+		<div class="gallery-scroll">
         <img src="ad-manager.jpg" alt="Account Manager Ad" loading="lazy">
         <img src="ad-copywriter.jpg" alt="Copywriter Ad" loading="lazy">
         <img src="ad-executive.jpg" alt="Executive Ad" loading="lazy">
@@ -188,6 +190,31 @@ An example I cited was how Hermès, the haute couture fashion house could run pe
     </a>
 </div>
     </footer>
+<script>
+    // 1. Create the lightbox elements in the browser (The Dark Room)
+    const lightbox = document.createElement('div');
+    lightbox.id = 'lightbox-overlay';
+    document.body.appendChild(lightbox);
 
+    const lightboxImg = document.createElement('img');
+    lightbox.appendChild(lightboxImg);
+
+    // 2. Find every image in your 'sections' (Ignoring the logo)
+    // This targets standard images AND images inside your new carousels
+    const images = document.querySelectorAll('section img');
+
+    // 3. Add the "Click" magic to each image
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;        // Copy the image source
+            lightbox.classList.add('active'); // Turn on the lights
+        });
+    });
+
+    // 4. Click anywhere to close
+    lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+    });
+</script>
 </body>
 </html>
