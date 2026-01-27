@@ -185,12 +185,6 @@ img {
     margin-bottom: 120px;
 }
 
-/* Mobile: Stack them neatly */
-@media (max-width: 768px) {
-    .grid-gallery {
-        grid-template-columns: 1fr !important;
-    }
-}
 
 /* Styling for captions under images */
 .caption {
@@ -233,28 +227,35 @@ margin-bottom: 90px !important; /* Reduced from the standard 120px */
 
 }
 
-/* --- Recruitment Grid --- */
+/* --- Recruitment Grid (DESKTOP FIX) --- */
 .recruitment-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    display: block;            /* Parent is just a container now */
     margin-bottom: 75px;
 }
 
-/* 1. Force the H2 to span the full width of the grid */
+/* 1. Header Styling */
 .grid-header {
-    grid-column: 1 / -1;   /* Spans across all 4 columns */
-    text-align: center;    /* Centers the text */
+    grid-column: 1 / -1;       /* Safety code */
+    text-align: center; 
     width: 100%;
-    margin-bottom: 40px;   /* Adds a nice gap between text and images */
+    margin-bottom: 40px; 
 }
 
-/* 2. Ensure the images below fill their columns perfectly */
-.recruitment-grid img {
+/* 2. THE FIX: The Grid now lives on the wrapper */
+.gallery-scroll {
+    display: grid;             /* Turn on the Grid */
+    grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+    gap: 10px;                 /* Space between images */
+    width: 100%;
+}
+
+/* 3. Image Sizing */
+.gallery-scroll img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 2px;
+    cursor: zoom-in;
 }
 
 /* --- Footer --- */
@@ -275,19 +276,6 @@ footer {
     line-height: 1;
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-    .project-row, .project-row.reverse {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
-    .grid-gallery, .recruitment-grid {
-        grid-template-columns: 1fr; /* Stack vertically on mobile */
-    }
-    
-    h1 { font-size: 2rem; }
-}
 
 /* Add this new class for tall/vertical images only */
 .tall-ad {
@@ -316,9 +304,10 @@ footer {
     grid-template-columns: repeat(3, auto); /* 3 Equal columns */
     gap: 15px;                             /* Your requested 15px gap */
     
-    /* Constraint & Alignment */
-    width: fit-content;
-    max-width: 100%;      /* Force it to match the text width */
+    /* THE ALIGNMENT FIX */
+    width: 100%;             /* Allow it to span the full page width */
+    justify-content: center; /* Force the 3 columns to pack in the center */
+    justify-items: center;   /* Force the images to sit in the center of their slots */
     margin: 0 auto;         /* Center the whole block on page */
     padding: 0 20px;        /* Match the standard .container padding */
     box-sizing: border-box; 
@@ -336,19 +325,6 @@ footer {
     border-radius: 4px;     /* Optional polish */
 }
 
-/* Mobile Stack */
-@media (max-width: 768px) {
-    .runwal-gallery {
-        grid-template-columns: 1fr;
-        width: 100%;       /* Full width on phone */
-    }
-    .runwal-gallery img {
-        height: auto;      /* Reset height to avoid tiny images */
-        width: 100%;       /* Fill the screen */
-        max-height: none;
-    }
-
-}
 
 .project-row.hermes-main {
     margin-bottom: 40px !important; /* Adjust this number to taste */
@@ -362,4 +338,242 @@ footer {
 
 .socials a:hover {
     color: #fff; /* Turns white on hover */
+}
+
+/* --- PERFECT SYMMETRY SCROLLBARS --- */
+
+/* 1. Firefox Defaults (Standardizes "Thin" vs "Auto") */
+html,
+body,
+.grid-gallery,
+.runwal-gallery,
+.recruitment-grid,
+.gallery-scroll {
+    scrollbar-width: thin;          
+    scrollbar-color: #333 #121212;  
+}
+
+/* 2. WebKit Track (The Background) */
+::-webkit-scrollbar,
+.grid-gallery::-webkit-scrollbar,
+.runwal-gallery::-webkit-scrollbar,
+.recruitment-grid::-webkit-scrollbar,
+.gallery-scroll::-webkit-scrollbar {
+    /* KEY FIX: Set both width and height to the EXACT same value */
+    width: 12px;                    /* Vertical Thickness */
+    height: 12px;                   /* Horizontal Thickness */
+    background-color: #121212;      
+}
+
+/* 3. WebKit Thumb (The Dark Grey Handle) */
+::-webkit-scrollbar-thumb,
+.grid-gallery::-webkit-scrollbar-thumb,
+.runwal-gallery::-webkit-scrollbar-thumb,
+.recruitment-grid::-webkit-scrollbar-thumb,
+.gallery-scroll::-webkit-scrollbar-thumb {
+    background-color: #333;         /* Deep Charcoal Grey */
+    border-radius: 10px;            
+    
+    /* KEY FIX: Thicker border creates a "Floating Pill" effect */
+    border: 3px solid #121212;      
+}
+
+/* 4. Hover State */
+::-webkit-scrollbar-thumb:hover,
+.grid-gallery::-webkit-scrollbar-thumb:hover,
+.runwal-gallery::-webkit-scrollbar-thumb:hover,
+.recruitment-grid::-webkit-scrollbar-thumb:hover,
+.gallery-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #444;         /* Subtle highlight */
+    border: 3px solid #121212;      /* Maintain size on hover */
+}
+
+/* =========================================
+   MOBILE & TABLET REFINEMENTS (The "One-by-One" Fix)
+   ========================================= */
+/* =========================================
+   MOBILE & TABLET REFINEMENTS
+   ========================================= */
+@media screen and (max-width: 1025px) {
+
+    /* --- 1. THE HIERARCHY FIX (Title -> Image -> Text) --- */
+    .project-row, 
+    .project-row.reverse {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 60px;       
+        margin-bottom: 60px !important; 
+        border-bottom: 1px solid #333; 
+        gap: 0 !important;
+    }
+
+    /* Unbox containers */
+    .text-side, .media-side {
+        display: contents; 
+    }
+
+    /* Re-Ordering Logic */
+    .project-row h2 {
+        order: 1;                   
+        margin-bottom: 30px;        
+        text-align: center;
+        font-size: 1.8rem;
+        width: 100%;                
+        padding: 0 20px;            
+        box-sizing: border-box;
+    }
+
+    .project-row .media-content-wrapper,
+    .project-row > img, 
+    .media-side > img,
+    .video-wrapper {
+        order: 2;                   
+        margin-bottom: 30px;        
+        width: 100% !important;     
+        max-width: 100% !important; 
+        padding: 0;                 
+    }
+
+    .project-row p, 
+    .project-row .btn {
+        order: 3;                   
+        text-align: center;         
+        padding: 0 20px;            
+        box-sizing: border-box;
+    }
+
+    /* --- 2. CAROUSEL SIZING FIX --- */
+    .grid-gallery, 
+    .runwal-gallery, 
+    .recruitment-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        margin: 0 auto 40px auto;   
+        padding-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        padding-left: 20px;         
+    }
+
+    /* FIX: Removed the dangling comma here */
+    .grid-gallery img,
+    .runwal-gallery img {
+        height: 50vh;               
+        width: auto;                
+        max-width: 90vw;            
+        object-fit: contain;
+        border-radius: 4px;
+        scroll-snap-align: center;
+        order: 4;                   
+        background-color: #121212;
+    }
+    
+    /* --- 3. RECRUITMENT SCROLL (The "Peeking" Strip) --- */
+    .recruitment-grid {
+        display: block !important;    
+        padding-bottom: 0;
+        margin-bottom: 60px;
+    }
+
+    .recruitment-grid .grid-header {
+        display: block !important;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .gallery-scroll {
+        display: flex !important;                
+        overflow-x: auto !important;             
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        width: 100%;
+        padding-left: 20px;  
+        padding-right: 20px;          
+        box-sizing: border-box;
+    }
+
+    /* The Images: 85% width lets the next one peek in */
+    .gallery-scroll img {
+        flex: 0 0 85%;                
+        width: 85% !important;
+        height: 60vh;
+        object-fit: contain;          
+        scroll-snap-align: center;
+        margin-right: 0;
+        border-radius: 4px;
+        background-color: transparent;
+    }
+
+    /* BMW Ad Specific Fix */
+    .media-side .tall-ad {
+        width: 100% !important;        
+        max-width: 100% !important;    
+        height: auto !important;       
+        max-height: none !important;   
+        object-fit: cover;             
+        margin: 0 0 30px 0;            
+    }
+
+    /* --- SEPARATOR FIXES --- */
+    .hermes-main,
+    .runwal-main {
+        border-bottom: none !important;   
+        padding-bottom: 0 !important;     
+        margin-bottom: 30px !important;   
+    }
+
+    .grid-gallery,       
+    .runwal-gallery,     
+    .recruitment-grid {  
+        border-bottom: 1px solid #333;    
+        padding-bottom: 60px !important;  
+        margin-bottom: 60px !important;   
+        width: 100%;
+    }
+
+    .project-row {
+        border-bottom: 1px solid #333;
+        padding-bottom: 60px;
+        margin-bottom: 60px;
+    }
+
+} /* <--- END OF MOBILE MEDIA QUERY. LIGHTBOX IS NOW FREE. */
+
+
+/* --- FULLSCREEN LIGHTBOX (Global - Works on Desktop & Mobile) --- */
+#lightbox-overlay {
+    display: none;              
+    position: fixed;            
+    z-index: 9999;              
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); 
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;           
+}
+
+#lightbox-overlay.active {
+    display: flex;              
+}
+
+#lightbox-overlay img {
+    max-width: 95%;             
+    max-height: 95%;            
+    object-fit: contain;        
+    border-radius: 4px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+}
+
+.project-row img, 
+.grid-gallery img, 
+.runwal-gallery img, 
+.recruitment-grid img,
+.gallery-scroll img {
+    cursor: zoom-in;
 }
