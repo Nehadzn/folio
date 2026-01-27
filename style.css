@@ -391,9 +391,6 @@ body,
 /* =========================================
    MOBILE & TABLET REFINEMENTS (The "One-by-One" Fix)
    ========================================= */
-/* =========================================
-   MOBILE & TABLET REFINEMENTS
-   ========================================= */
 @media screen and (max-width: 1025px) {
 
     /* --- 1. THE HIERARCHY FIX (Title -> Image -> Text) --- */
@@ -401,25 +398,25 @@ body,
     .project-row.reverse {
         display: flex;
         flex-direction: column;
-        padding-bottom: 60px;       
+        padding-bottom: 60px;       /* Space before the line separator */
         margin-bottom: 60px !important; 
-        border-bottom: 1px solid #333; 
+        border-bottom: 1px solid #333; /* 3. THE LINE SEPARATOR */
         gap: 0 !important;
     }
 
-    /* Unbox containers */
+    /* This "unboxes" the containers so we can reorder the items inside */
     .text-side, .media-side {
         display: contents; 
     }
 
-    /* Re-Ordering Logic */
+    /* The Re-Ordering Logic */
     .project-row h2 {
-        order: 1;                   
-        margin-bottom: 30px;        
+        order: 1;                   /* Title First */
+        margin-bottom: 30px;        /* Space between Title and Image */
         text-align: center;
         font-size: 1.8rem;
-        width: 100%;                
-        padding: 0 20px;            
+        width: 100%;                /* Ensure it spans full width */
+        padding: 0 20px;            /* Prevent text hitting edge */
         box-sizing: border-box;
     }
 
@@ -427,22 +424,23 @@ body,
     .project-row > img, 
     .media-side > img,
     .video-wrapper {
-        order: 2;                   
-        margin-bottom: 30px;        
-        width: 100% !important;     
-        max-width: 100% !important; 
-        padding: 0;                 
+        order: 2;                   /* Image/Video Second */
+        margin-bottom: 30px;        /* Space between Image and Text */
+        width: 100% !important;     /* Fixes "Small Image" issue */
+        max-width: 100% !important; /* Overrides the global 80% limit */
+        padding: 0;                 /* Full bleed (optional) */
     }
 
     .project-row p, 
     .project-row .btn {
-        order: 3;                   
-        text-align: center;         
-        padding: 0 20px;            
+        order: 3;                   /* Text/Button Last */
+        text-align: center;         /* Center align text */
+        padding: 0 20px;            /* Breathing room */
         box-sizing: border-box;
     }
 
-    /* --- 2. CAROUSEL SIZING FIX --- */
+    /* --- 2. HERMES & CAROUSEL SIZING FIX --- */
+    /* This ensures your carousel images match the cover image size */
     .grid-gallery, 
     .runwal-gallery, 
     .recruitment-grid {
@@ -450,33 +448,34 @@ body,
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 16px;
-        margin: 0 auto 40px auto;   
+        margin: 0 auto 40px auto;   /* Center the carousel */
         padding-bottom: 20px;
         width: 100%;
         box-sizing: border-box;
-        padding-left: 20px;         
+        padding-left: 20px;         /* Align start with text padding */
     }
 
-    /* FIX: Removed the dangling comma here */
     .grid-gallery img,
     .runwal-gallery img {
-        height: 50vh;               
-        width: auto;                
-        max-width: 90vw;            
+        /* Make these roughly the same visual weight as the cover */
+        height: 50vh;               /* Fixed height keeps them uniform */
+        width: auto;                /* Let width adjust naturally */
+        max-width: 90vw;            /* Prevent them getting too wide */
         object-fit: contain;
         border-radius: 4px;
         scroll-snap-align: center;
-        order: 4;                   
+        order: 4;                   /* Ensure galleries sit below everything else */
         background-color: #121212;
     }
     
-    /* --- 3. RECRUITMENT SCROLL (The "Peeking" Strip) --- */
+    /* 1. The Container (Holds the Title + The Carousel) */
     .recruitment-grid {
-        display: block !important;    
+        display: block !important;    /* Stack them vertically */
         padding-bottom: 0;
         margin-bottom: 60px;
     }
 
+    /* 2. The Header (Sits nicely on top) */
     .recruitment-grid .grid-header {
         display: block !important;
         text-align: center;
@@ -484,23 +483,25 @@ body,
         box-sizing: border-box;
     }
 
+    /* 3. The Carousel Track (The new wrapper we made) */
     .gallery-scroll {
-        display: flex !important;                
-        overflow-x: auto !important;             
+        display: flex !important;                /* Horizontal Row */
+        overflow-x: auto !important;             /* Enable Swipe */
         scroll-snap-type: x mandatory;
         gap: 16px;
+        
+        /* Layout & Spacing */
         width: 100%;
-        padding-left: 20px;  
-        padding-right: 20px;          
+        padding-left: 20px;           /* Align start with text */
         box-sizing: border-box;
     }
 
-    /* The Images: 85% width lets the next one peek in */
+    /* 4. The Images inside the track */
     .gallery-scroll img {
-        flex: 0 0 85%;                
+        flex: 0 0 85%;                /* Card Size */
         width: 85% !important;
         height: 60vh;
-        object-fit: contain;          
+        object-fit: contain;          /* No cropping */
         scroll-snap-align: center;
         margin-right: 0;
         border-radius: 4px;
@@ -508,68 +509,81 @@ body,
     }
 
     /* BMW Ad Specific Fix */
+    /* BMW Ad Fix: Force Full Width on Tablets */
     .media-side .tall-ad {
-        width: 100% !important;        
+        width: 100% !important;        /* Force it to fill the screen width */
         max-width: 100% !important;    
-        height: auto !important;       
-        max-height: none !important;   
-        object-fit: cover;             
-        margin: 0 0 30px 0;            
+        height: auto !important;       /* Let it grow as tall as it needs to be */
+        max-height: none !important;   /* REMOVE the 80vh cap that was shrinking it */
+        object-fit: cover;             /* Ensures it fills the space nicely */
+        margin: 0 0 30px 0;            /* Remove side margins, keep bottom space */
     }
 
     /* --- SEPARATOR FIXES --- */
+
+    /* 1. Remove the "Misplaced" Lines (The Middle Cuts) */
+    /* This targets the text sections of Hermes and Runwal specifically */
     .hermes-main,
     .runwal-main {
-        border-bottom: none !important;   
-        padding-bottom: 0 !important;     
-        margin-bottom: 30px !important;   
+        border-bottom: none !important;   /* Delete the line cutting the project in half */
+        padding-bottom: 0 !important;     /* Remove extra space */
+        margin-bottom: 30px !important;   /* Keep the text and carousel close */
     }
 
-    .grid-gallery,       
-    .runwal-gallery,     
-    .recruitment-grid {  
-        border-bottom: 1px solid #333;    
-        padding-bottom: 60px !important;  
-        margin-bottom: 60px !important;   
+    /* 2. Add the "Missing" Lines (The Real Endings) */
+    /* This targets the Carousels/Grids that mark the actual end of the project */
+    .grid-gallery,       /* Hermes & Runwal Carousels */
+    .runwal-gallery,     /* (Safety Double-check) */
+    .recruitment-grid {  /* The Job Ads */
+        border-bottom: 1px solid #333;    /* Draw the separator here instead */
+        padding-bottom: 60px !important;  /* Breathing room above the line */
+        margin-bottom: 60px !important;   /* Breathing room below the line */
         width: 100%;
     }
 
+    /* 3. Ensure Standard Projects still have their lines */
+    /* (BMW, Taj Loyalty, Metro Shoes) */
     .project-row {
+        /* If these don't have lines, this forces them back */
         border-bottom: 1px solid #333;
         padding-bottom: 60px;
         margin-bottom: 60px;
     }
 
-} /* <--- END OF MOBILE MEDIA QUERY. LIGHTBOX IS NOW FREE. */
+} /* ← CLOSING BRACE FOR MEDIA QUERY - THIS WAS MISSING! */
 
+/* --- FULLSCREEN LIGHTBOX (The Magnifier) --- */
 
-/* --- FULLSCREEN LIGHTBOX (Global - Works on Desktop & Mobile) --- */
+/* 1. The Dark Overlay (Hidden by default) */
 #lightbox-overlay {
-    display: none;              
-    position: fixed;            
-    z-index: 9999;              
+    display: none;              /* Hidden until clicked */
+    position: fixed;            /* Stays in place while scrolling */
+    z-index: 9999;              /* Sits on top of EVERYTHING */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); 
+    background-color: rgba(0, 0, 0, 0.95); /* Deep black background */
     justify-content: center;
     align-items: center;
-    cursor: zoom-out;           
+    cursor: zoom-out;           /* Tells user "Click to close" */
 }
 
+/* 2. The State when it is Open */
 #lightbox-overlay.active {
-    display: flex;              
+    display: flex;              /* Activates the flexbox centering */
 }
 
+/* 3. The Image inside the Lightbox */
 #lightbox-overlay img {
-    max-width: 95%;             
-    max-height: 95%;            
-    object-fit: contain;        
+    max-width: 95%;             /* Fit within screen width */
+    max-height: 95%;            /* Fit within screen height */
+    object-fit: contain;        /* Ensure full image is visible */
     border-radius: 4px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5); 
+    box-shadow: 0 0 30px rgba(0,0,0,0.5); /* Nice glow effect */
 }
 
+/* 4. Add a "Zoom" cursor to your project images so users know they are clickable */
 .project-row img, 
 .grid-gallery img, 
 .runwal-gallery img, 
