@@ -426,7 +426,8 @@ body,
         order: 2;                   /* Image/Video Second */
         margin-bottom: 30px;        /* Space between Image and Text */
         width: 100% !important;     /* Fixes "Small Image" issue */
-        max-width: 100% !important; /* Overrides the global 80% limit */
+        height: auto !important;    
+        object-fit: contain !important;
         padding: 0;                 /* Full bleed (optional) */
     }
     
