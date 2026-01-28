@@ -293,7 +293,7 @@ footer {
 .runwal-hero-img {
     width: 100% !important; /* Force full column width */
     height: auto !important;
-    object-fit: contain !important;
+    object-fit: cover !important;
     display: block;
 }
 
@@ -422,8 +422,7 @@ body,
 
     .project-row .media-content-wrapper,
     .project-row > img, 
-    .media-side > img,
-    .video-wrapper {
+    .media-side > img {
         order: 2;                   /* Image/Video Second */
         margin-bottom: 30px;        /* Space between Image and Text */
         width: 100% !important;     /* Fixes "Small Image" issue */
@@ -432,6 +431,10 @@ body,
     }
     
     .video-wrapper {
+        order: 2;                   /* Image/Video Second */
+        margin-bottom: 30px;        /* Space between Image and Text */
+        width: 100% !important;     /* Fixes "Small Image" issue */
+        max-width: 100% !important; /* Overrides the global 80% limit */
         padding-bottom: 56.25% !important; 
         height: 0 !important;
         padding-top: 0 !important;
@@ -523,8 +526,16 @@ body,
         max-width: 100% !important;    
         height: auto !important;       /* Let it grow as tall as it needs to be */
         max-height: none !important;   /* REMOVE the 80vh cap that was shrinking it */
-        object-fit: contain;            
+        object-fit: contain !important;            
         margin: 0 0 30px 0;            /* Remove side margins, keep bottom space */
+    }
+
+    /* Runwal Hero Fix: Stop cropping on mobile */
+    .runwal-hero-img {
+        object-fit: contain !important;  /* The key fix */
+        width: 100% !important;
+        height: auto !important;
+        margin-bottom: 30px;
     }
 
     /* --- SEPARATOR FIXES --- */
