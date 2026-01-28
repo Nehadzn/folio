@@ -292,8 +292,8 @@ footer {
 /* The Big Hero Image */
 .runwal-hero-img {
     width: 100% !important; /* Force full column width */
-    height: auto;
-    object-fit: cover;
+    height: auto !important;
+    object-fit: contain !important;
     display: block;
 }
 
@@ -430,6 +430,14 @@ body,
         max-width: 100% !important; /* Overrides the global 80% limit */
         padding: 0;                 /* Full bleed (optional) */
     }
+    
+    .video-wrapper {
+        padding-bottom: 56.25% !important; 
+        height: 0 !important;
+        padding-top: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 
     .project-row p, 
     .project-row .btn {
@@ -471,8 +479,8 @@ body,
     /* 1. The Container (Holds the Title + The Carousel) */
     .recruitment-grid {
         display: block !important;    /* Stack them vertically */
-        padding-bottom: 0;
-        margin-bottom: 60px;
+        padding-bottom: 0 !important;
+        margin-bottom: 40px !important;
     }
 
     /* 2. The Header (Sits nicely on top) */
@@ -481,6 +489,7 @@ body,
         text-align: center;
         width: 100%;
         box-sizing: border-box;
+        margin-bottom: 20px !important;
     }
 
     /* 3. The Carousel Track (The new wrapper we made) */
@@ -509,13 +518,12 @@ body,
     }
 
     /* BMW Ad Specific Fix */
-    /* BMW Ad Fix: Force Full Width on Tablets */
     .media-side .tall-ad {
         width: 100% !important;        /* Force it to fill the screen width */
         max-width: 100% !important;    
         height: auto !important;       /* Let it grow as tall as it needs to be */
         max-height: none !important;   /* REMOVE the 80vh cap that was shrinking it */
-        object-fit: cover;             /* Ensures it fills the space nicely */
+        object-fit: contain;            
         margin: 0 0 30px 0;            /* Remove side margins, keep bottom space */
     }
 
@@ -533,13 +541,19 @@ body,
     /* 2. Add the "Missing" Lines (The Real Endings) */
     /* This targets the Carousels/Grids that mark the actual end of the project */
     .grid-gallery,       /* Hermes & Runwal Carousels */
-    .runwal-gallery,     /* (Safety Double-check) */
-    .recruitment-grid {  /* The Job Ads */
+    .runwal-gallery {
         border-bottom: 1px solid #333;    /* Draw the separator here instead */
         padding-bottom: 60px !important;  /* Breathing room above the line */
         margin-bottom: 60px !important;   /* Breathing room below the line */
         width: 100%;
     }
+
+     .recruitment-grid {  /* The Job Ads */
+        border-bottom: 1px solid #333;   
+        padding-bottom: 30px !important;  /* Breathing room above the line */
+        margin-bottom: 60px !important;   /* Breathing room below the line */
+        width: 100%;
+     }
 
     /* 3. Ensure Standard Projects still have their lines */
     /* (BMW, Taj Loyalty, Metro Shoes) */
