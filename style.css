@@ -431,15 +431,17 @@ body,
     }
     
     .video-wrapper {
-        order: 2;                   /* Image/Video Second */
-        margin-bottom: 30px;        /* Space between Image and Text */
-        width: 100% !important;     /* Fixes "Small Image" issue */
-        max-width: 100% !important; /* Overrides the global 80% limit */
-        padding-bottom: 56.25% !important; 
-        height: 0 !important;
-        padding-top: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+       order: 2;                   
+        width: 100% !important;     
+        margin-bottom: 30px;
+        
+        /* Modern Fix */
+        aspect-ratio: 16 / 9;       /* Forces 16:9 ratio automatically */
+        height: auto !important;    /* Let it grow naturally */
+        
+        /* Reset the old Padding Hack */
+        padding: 0 !important;      
+        position: relative !important;
     }
 
     .project-row p, 
@@ -522,8 +524,7 @@ body,
 
     /* BMW Ad Specific Fix */
     .media-side .tall-ad {
-        width: 100% !important;        /* Force it to fill the screen width */
-        max-width: 100% !important;    
+        width: 100% !important;        /* Force it to fill the screen width */   
         height: auto !important;       /* Let it grow as tall as it needs to be */
         max-height: none !important;   /* REMOVE the 80vh cap that was shrinking it */
         object-fit: contain !important;            
@@ -531,7 +532,7 @@ body,
     }
 
     /* Runwal Hero Fix: Stop cropping on mobile */
-    .runwal-hero-img {
+    .media-side .runwal-hero-img {
         object-fit: contain !important;  /* The key fix */
         width: 100% !important;
         height: auto !important;
