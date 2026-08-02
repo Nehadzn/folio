@@ -389,6 +389,37 @@ body,
 }
 
 /* =========================================
+   AMAN SPECIAL LAYOUT
+   ========================================= */
+
+/* Manifesto — fills its column (lifts the global 80% cap) */
+.aman-main .media-side img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Stack manifesto + caption vertically (harmless if there's no caption) */
+.aman-main .media-side {
+    flex-direction: column;
+}
+
+/* Tighten the gap to the gallery, matching Runwal */
+.project-row.aman-main {
+    margin-bottom: 40px;
+}
+
+/* Gallery — uniform 16:9 cards */
+.aman-gallery img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =========================================
    MOBILE & TABLET REFINEMENTS (The "One-by-One" Fix)
    ========================================= */
 @media screen and (max-width: 1025px) {
@@ -480,6 +511,12 @@ body,
         scroll-snap-align: center;
         order: 4;                   /* Ensure galleries sit below everything else */
         background-color: #121212;
+    }
+
+/* Fix: desktop's centered grid crops the first card once this is a
+       scrolling carousel — reset it to start from the left like the others */
+    .runwal-gallery {
+        justify-content: flex-start !important;
     }
     
     /* 1. The Container (Holds the Title + The Carousel) */
@@ -575,6 +612,35 @@ body,
         border-bottom: 1px solid #333;
         padding-bottom: 60px;
         margin-bottom: 60px;
+    }
+/* --- AMAN MOBILE FIXES --- */
+
+    /* Kill the stray line between the manifesto and its gallery */
+    .aman-main {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+        margin-bottom: 30px !important;
+    }
+
+    /* Keep the caption under the image (only matters if you added one) */
+    .aman-main .caption {
+        order: 2;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+    }
+/* Size Aman cards by width so 16:9 fills the box — no dead space above the scrollbar */
+    .aman-gallery img {
+        height: auto;
+        width: 85vw;
+        max-width: 85vw;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+/* Manifesto image sits right on top of its caption, matching Taj's 15px gap */
+    .aman-main .media-side img {
+        margin-bottom: 0 !important;
     }
 
 } /* ← CLOSING BRACE FOR MEDIA QUERY - THIS WAS MISSING! */
