@@ -56,7 +56,7 @@ a {
     
     /* Spacing */
     padding-bottom: 80px;      /* Space below the text */
-    margin-bottom: 100px;      /* Gap before the first video project starts */
+    margin-bottom: 60px;      /* Gap before the first video project starts */
     text-align: center;
 }
 
@@ -408,6 +408,7 @@ body,
 /* Tighten the gap to the gallery, matching Runwal */
 .project-row.aman-main {
     margin-bottom: 40px;
+    padding-top: 60px;
 }
 
 /* Gallery — uniform 16:9 cards */
@@ -620,6 +621,7 @@ body,
         border-bottom: none !important;
         padding-bottom: 0 !important;
         margin-bottom: 30px !important;
+        padding-top: 40px;
     }
 
     /* Keep the caption under the image (only matters if you added one) */
