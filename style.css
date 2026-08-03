@@ -483,7 +483,10 @@ body,
         padding: 0 20px;            /* Breathing room */
         box-sizing: border-box;
     }
-
+.grey-hero-patch {
+        padding-bottom: 40px;   /* match the margin-bottom below */
+        margin-bottom: 40px;
+    }
     /* --- 2. HERMES & CAROUSEL SIZING FIX --- */
     /* This ensures your carousel images match the cover image size */
     .grid-gallery, 
