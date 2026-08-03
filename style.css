@@ -484,7 +484,7 @@ body,
         box-sizing: border-box;
     }
 .grey-hero-patch {  /* match the margin-bottom below */
-        margin-bottom: 40px !important;
+        margin-bottom: 10px !important;
     }
     /* --- 2. HERMES & CAROUSEL SIZING FIX --- */
     /* This ensures your carousel images match the cover image size */
